@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>parallel-button</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #2b4162;
+      /*<image> = <url> | <image()> | <image-set()> | <element()> | <paint()> | <cross-fade()> | <gradient>*/
+      /* https://developer.mozilla.org/zh-CN/docs/Web/CSS/linear-gradient */
+      background-image: linear-gradient(315deg, #2b4162 0%, #12100e 74%);
+    }
+
+    .noselect {
+      /*禁用了默认的callout展示， callout是指当触摸并按住一个元素的时候出现的提示*/
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      /*safari browser */
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      /* 一个没有标准化的属性，能够设置点击链接的时候出现的高亮颜色*/
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button {
+      width: 150px;
+      height: 50px;
+      cursor: pointer;
+      background: none;
+      border: 2px solid rgba(255, 255, 255, .4);
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      transition: 500ms;
+    }
+
+    .bg {
+      width: 0px;
+      height: 50px;
+      content: '';
+      z-index: -1;
+      background: rgba(255, 255, 255, 0.2);
+      transform: skewX(45deg);
+      transition: 500ms;
+    }
+
+
+    button:hover {
+      border: 2px solid rgba(255, 255, 255, .8)
+    }
+
+    button:hover::after {
+      color: black;
+    }
+
+    button:hover .bg {
+      background: rgba(255, 255, 255, 0.8);
+      width: 150px;
+    }
+
+
+    button:focus {
+      outline: none;
+    }
+
+    button::after {
+      content: 'Parallel';
+      position: absolute;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <button class="noselect">
+    <div class="bg"></div>
+  </button>
+</body>
+
+</html>
