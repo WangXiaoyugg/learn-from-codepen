@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Basic Vue Reactivity</title>
+  <script src="https://unpkg.com/vue@next"></script>
+  <style>
+    html {
+      height: 100%;
+    }
+
+    body {
+      display: grid;
+      min-height: 100%;
+      margin: 0;
+      place-items: center;
+      font-size: 1rem;
+      line-height: 1.5;
+      font-weight: 400;
+    }
+
+    .box {
+      width: 300px;
+      background-color: #fff;
+      border-radius: 6px;
+      box-shadow: 0 2px 3px rgba(10, 10, 10, .1), 0 0 0 1px rgba(10, 10, 10, .1);
+      color: #4a4a4a;
+      display: block;
+      padding: 1.25rem;
+    }
+
+    h1 {
+      font-size: 20px;
+    }
+
+    .box.dark-mode {
+      background: black;
+      color: #bbb;
+    }
+
+    .box.dark-mode h1 {
+      color: white;
+    }
+
+    .box.dark-mode .checkbox:hover {
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div class="box content" :class="modeClass">
+      <h1>{{title}}</h1>
+      <p>{{description}}</p>
+      <label class="checkbox">
+        <input type="checkbox" v-model="darkMode">
+        Dark Mode
+      </label>
+    </div>
+  </div>
+  <script>
+    const { createApp, reactive, toRefs, computed } = window.Vue
+    createApp({
+      setup() {
+        const data = reactive({
+          title: 'Easy Vue-next Demo!',
+          description: 'I was built with a Demo with vue-next.',
+          darkMode: true,
+        })
+        const modeClass = computed(() => {
+          return data.darkMode ? 'dark-mode' : ''
+        })
+        return {
+          ...toRefs(data),
+          modeClass,
+        };
+      }
+    }).mount('#app')
+  </script>
+</body>
+
+</html>
