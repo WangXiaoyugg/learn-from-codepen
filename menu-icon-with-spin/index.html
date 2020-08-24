@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>menu icon with a spin</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #e78a33;
+    }
+
+    .menu {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+      transition: 0.5s ease;
+      height: 50px;
+    }
+
+    .menu:hover .bar {
+      box-shadow: 1px 1px 7px 1px rgba(0, 0, 0, .3);
+    }
+
+    .bar {
+      width: 55px;
+      height: 10px;
+      background: #fff;
+      box-shadow: 1px 1px 3px rgba(0, 0, 0, .4);
+      border-radius: 2px;
+      transition: 0.4s ease
+    }
+
+    .bar:not(:first-child) {
+      margin-top: 10px;
+    }
+
+    #hi {
+      position: absolute;
+      left: -9999px;
+      top: -9999px;
+    }
+
+    #hi:checked+.menu {
+      transform: translate(-50%, -50%) rotate(180deg);
+    }
+
+    #hi:checked+.menu .bar {
+      transform: rotateY(180deg) rotateX(350deg);
+    }
+
+    #hi:checked+.menu .bar:first-child {
+      transform: rotate(-45deg);
+      margin-top: 20px;
+    }
+
+    #hi:checked+.menu .bar:nth-child(2) {
+      opacity: 0;
+    }
+
+    #hi:checked+.menu .bar:nth-child(3) {
+      transform: rotate(45deg);
+      margin-top: -30px;
+    }
+  </style>
+</head>
+
+<body>
+  <input type="checkbox" id="hi">
+  <label class="menu" for="hi">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </label>
+</body>
+
+</html>
