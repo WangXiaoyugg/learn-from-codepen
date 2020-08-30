@@ -7,3 +7,5 @@
   - vue3 reactive API
 4. menu icon with a spin
   - css transform
+5. terminal-text-effect
+  - setInterval
